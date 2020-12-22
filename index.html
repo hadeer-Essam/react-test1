@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+
+    <script type="text/babel">
+        class App extends React.Component{
+            state={
+               status:false
+            }
+            handleClick(e){
+                console.log(e.target)
+            }
+            handleMouseOver(e){
+                console.log(e.target,e.pageX)
+            }
+            handleStatus=(e)=>{
+                this.state.status=!this.state.status
+                console.log(this.state.status)
+            }
+            render(){
+                return(
+                    <div className="app-content">
+                     <h1>Hello, Umedmi</h1>
+                     <p>my name is {this.state.name} and age is {this.state.age}</p>
+                      <button onClick={this.handleClick}>Click Me</button>
+                      <button onMouseOver={this.handleMouseOver}>hover Me</button>
+                      <button onClick={this.handleStatus}>change status</button>
+
+                     </div>
+                );
+            }
+        }
+        ReactDOM.render(<App/>,document.getElementById("root")); 
+    </script>
+</body>
+</html>
