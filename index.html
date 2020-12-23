@@ -15,32 +15,64 @@
     <script type="text/babel">
         class App extends React.Component{
             state={
-               status:false
+               name:"name",
+               gender:""
             }
-            handleClick(e){
-                console.log(e.target)
-            }
-            handleMouseOver(e){
-                console.log(e.target,e.pageX)
-            }
+           
+            // handleClick(e){
+            //     console.log(e.target)
+            // }
+            // handleMouseOver=(e,text)=>{
+            //     console.log(e.target,text)
+            // }
             handleStatus=(e)=>{
                 this.state.status=!this.state.status
                 console.log(this.state.status)
             }
+            formSubmit=(e)=>{
+                e.preventDefault();
+                // console.log(e)
+                // for(let i=0; i<e.target.elements.length-1;i++){
+                //     console.log(e.target[i].value);
+                // }
+                // this.setState({
+                //     name:e.target[0].value,
+                //     age:e.target[1].value
+                // });
+                console.log(this.state);
+            }
+            handleInput=(e)=>{
+                 const target= e.target;
+              const value= target.name==="name"? target.value:target.id;
+              const property=target.name;
+              this.setState({
+                 [property]:value
+                });
+            }
             render(){
                 return(
-                    <div className="app-content">
-                     <h1>Hello, Umedmi</h1>
-                     <p>my name is {this.state.name} and age is {this.state.age}</p>
-                      <button onClick={this.handleClick}>Click Me</button>
-                      <button onMouseOver={this.handleMouseOver}>hover Me</button>
-                      <button onClick={this.handleStatus}>change status</button>
-
-                     </div>
-                );
+               <div className="app-content">
+                 <h1>Hello, Umedmi</h1>
+                 <button onClick={this.handleClick}>Click Me</button>
+                 <button onMouseOver={this.handleMouseOver}>hover Me</button>
+                 <button onClick={this.handleStatus}>change status</button>
+                 <form onSubmit={this.formSubmit}>
+                     <input type="text" placeholder="Name" name="name" onChange={this.handleInput}/>
+                      <label htmlFor="male">Male</label>
+                     <input type="radio" id="male" name="gender"  onChange={this.handleInput}/>
+                      <label htmlFor="female">Female</label>
+                     <input type="radio" id="female" name="gender"  onChange={this.handleInput}/>
+                     <button type="submit">Submit</button>
+                    </form>
+                 <p>`my name is {this.state.name} and gender is {this.state.gender}</p>
+                </div>
+        
+              );
             }
         }
+    
         ReactDOM.render(<App/>,document.getElementById("root")); 
     </script>
+
 </body>
 </html>
